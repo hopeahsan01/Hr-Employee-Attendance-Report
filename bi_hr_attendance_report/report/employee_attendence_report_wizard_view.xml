@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_one_set">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="emp_name" t-as="employee">
+                    <div class="page">
+                        <div class="oe_structure">
+                            <h1 align="center">Attendance Report</h1>
+                        </div>
+                        <table class="table table-sm table-striped mt-4">
+                            <tr>
+                                <td>
+                                    <strong>Date From</strong>
+                                </td>
+                                <td>
+                                    <t t-if="form_data.get('starting_date')">
+                                        <t t-esc="form_data['starting_date']"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <strong>Date To</strong>
+                                </td>
+                                <td>
+                                    <t t-if="form_data.get('ending_date')">
+                                        <t t-esc="form_data['ending_date']"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-bordered mt32" style="border:1px solid black;">
+                            <thead>
+                                <tr>
+                                    <th name="th_employee_name_id" class="text-left">
+                                        <span>Employee Name</span>
+                                    </th>
+                                    <th name="th_manager_name_id" class="text-left">
+                                        <span>Manager Name</span>
+                                    </th>
+                                    <th name="th_check_in_id" class="text-left">
+                                        <span>Check in</span>
+                                    </th>
+                                    <th name="th_check_out_id" class="text-left">
+                                        <span>Check out</span>
+                                    </th>
+                                    <th name="th_working_hours_id" class="text-left">
+                                        <span>Working Hours</span>
+                                    </th>
+                                    <!--                                    <th name="th_overtime_id" class="text-left">-->
+                                    <!--                                        <span>Over Time</span>-->
+                                    <!--                                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="employee['vals']" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t t-if="employee['emp_name']">
+                                                <t t-esc="employee['emp_name']"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <t t-if="employee['manager']">
+                                                <t t-esc="employee['manager']"/>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['check_in']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['check_out']"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['work_h']"/>
+                                        </td>
+                                        <!--                                        <td>-->
+                                        <!--                                            <span t-esc="line['overtime_hours']"/>-->
+                                        <!--                                        </td>-->
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div style="page-break-after: always;">
+                            <br/>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
